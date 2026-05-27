@@ -18,3 +18,13 @@
 - Profiles
 - AI Assistant
 - AI Tools
+
+## Penetration Testing Agent
+
+- Pentest Scope
+- Vulnerability Findings
+- Attack Path Review
+
+## Focused enhancement: Penetration Testing Agent
+
+Source evidence: AIAutonomousPenTestingAgent.

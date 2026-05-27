@@ -1,11 +1,45 @@
 # Cybersecurity Operations Suite Source Data Tables
 
-Mapped source projects: 3
+Mapped source projects: 4
 
-Detected source tables: 85
+Detected source tables: 119
 
 | Source Project | Table | Framework | Columns | Source File |
 | --- | --- | --- | ---: | --- |
+| AIAutonomousPenTestingAgent | agents_log | SQL | 11 | backend/migrations/001_schema.sql |
+| AIAutonomousPenTestingAgent | ai_reports | SQL | 10 | backend/routes/aiReport.js |
+| AIAutonomousPenTestingAgent | ai_results | SQL | 7 | backend/routes/agents.js |
+| AIAutonomousPenTestingAgent | ai_results | SQL | 7 | backend/migrations/002_fixes.sql |
+| AIAutonomousPenTestingAgent | compliance_mappings | SQL | 7 | backend/routes/aiAnalysis.js |
+| AIAutonomousPenTestingAgent | compliance_mappings | SQL | 7 | backend/migrations/001_schema.sql |
+| AIAutonomousPenTestingAgent | compliance_mappings | SQL | 7 | backend/migrations/002_fixes.sql |
+| AIAutonomousPenTestingAgent | compliance_reports | SQL | 6 | backend/routes/integrations.js |
+| AIAutonomousPenTestingAgent | gap_features | SQL | 6 | backend/routes/gap_ai_attack_chain_analysis_multi.js |
+| AIAutonomousPenTestingAgent | gap_features | SQL | 6 | backend/routes/gap_ai_contextual_vulnerability_severity_scoring.js |
+| AIAutonomousPenTestingAgent | gap_features | SQL | 6 | backend/routes/gap_ai_exploitability_prediction.js |
+| AIAutonomousPenTestingAgent | gap_features | SQL | 6 | backend/routes/gap_ai_false_positive_filtering.js |
+| AIAutonomousPenTestingAgent | gap_features | SQL | 6 | backend/routes/gap_ai_remediation_recommendation_specific_fix.js |
+| AIAutonomousPenTestingAgent | gap_features | SQL | 6 | backend/routes/gap_commercial_scanner_integration_nessus_qualys.js |
+| AIAutonomousPenTestingAgent | gap_features | SQL | 6 | backend/routes/gap_compliance_reporting_pci_dss_hipaa.js |
+| AIAutonomousPenTestingAgent | gap_features | SQL | 6 | backend/routes/gap_cvss_nvd_database_integration.js |
+| AIAutonomousPenTestingAgent | gap_features | SQL | 6 | backend/routes/gap_notifications_subsystem.js |
+| AIAutonomousPenTestingAgent | gap_features | SQL | 6 | backend/routes/gap_outbound_webhooks_siem_soar.js |
+| AIAutonomousPenTestingAgent | gap_features | SQL | 6 | backend/routes/gap_remediation_tracking_patch_management_workflow.js |
+| AIAutonomousPenTestingAgent | pen_reports | SQL | 8 | backend/models/schema.sql |
+| AIAutonomousPenTestingAgent | remediation_tracking | SQL | 10 | backend/routes/integrations.js |
+| AIAutonomousPenTestingAgent | reports | SQL | 15 | backend/migrations/001_schema.sql |
+| AIAutonomousPenTestingAgent | risk_assessments | SQL | 7 | backend/routes/aiAnalysis.js |
+| AIAutonomousPenTestingAgent | risk_assessments | SQL | 7 | backend/migrations/001_schema.sql |
+| AIAutonomousPenTestingAgent | risk_assessments | SQL | 7 | backend/migrations/002_fixes.sql |
+| AIAutonomousPenTestingAgent | scanner_imports | SQL | 6 | backend/routes/integrations.js |
+| AIAutonomousPenTestingAgent | scans | SQL | 8 | backend/models/schema.sql |
+| AIAutonomousPenTestingAgent | scans | SQL | 12 | backend/migrations/001_schema.sql |
+| AIAutonomousPenTestingAgent | security_logs | SQL | 8 | backend/models/schema.sql |
+| AIAutonomousPenTestingAgent | targets | SQL | 14 | backend/models/schema.sql |
+| AIAutonomousPenTestingAgent | targets | SQL | 12 | backend/migrations/001_schema.sql |
+| AIAutonomousPenTestingAgent | users | SQL | 5 | backend/models/schema.sql |
+| AIAutonomousPenTestingAgent | vulnerabilities | SQL | 12 | backend/models/schema.sql |
+| AIAutonomousPenTestingAgent | vulnerabilities | SQL | 21 | backend/migrations/001_schema.sql |
 | AICyberSOCCopilot | ai_results | SQL | 6 | backend/migrations/001_schema.sql |
 | AICyberSOCCopilot | alerts | SQL | 8 | backend/migrations/001_schema.sql |
 | AICyberSOCCopilot | allowlists | SQL | 8 | backend/migrations/002_schema_extended.sql |

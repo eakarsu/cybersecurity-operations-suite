@@ -10,6 +10,21 @@ export type SourceDashboardAction = {
 
 export const sourceDashboardActions: SourceDashboardAction[] = [
   {
+    "id": "penetration-testing-agent",
+    "label": "Penetration Testing Agent",
+    "description": "Open Penetration Testing Agent workflows elevated from AIAutonomousPenTestingAgent.",
+    "href": "/pentest-scope",
+    "sourceProjects": [
+      "AIAutonomousPenTestingAgent"
+    ],
+    "examples": [
+      "Pentest Scope",
+      "Vulnerability Findings",
+      "Attack Path Review"
+    ],
+    "count": 1
+  },
+  {
     "id": "ai-assistant",
     "label": "AI Assistant",
     "description": "Run source-derived AI assistant workflows and prompts.",

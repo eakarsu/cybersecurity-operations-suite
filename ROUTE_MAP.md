@@ -7,6 +7,9 @@ Primary routes:
 - `/profiles`
 
 Feature routes:
+- `/attack-path-review`
+- `/vulnerability-findings`
+- `/pentest-scope`
 - `/incidents`
 - `/alerts`
 - `/assets`

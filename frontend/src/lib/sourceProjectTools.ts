@@ -1,5 +1,19 @@
 export const sourceProjectTools = [
   {
+    "id": "penetration-testing-agent-copilot",
+    "title": "Penetration Testing Agent Copilot",
+    "category": "Penetration Testing Agent",
+    "description": "Focused Penetration Testing Agent AI tool elevated inside the current merged suite.",
+    "defaultPrompt": "Review the Penetration Testing Agent context. Return a professional summary, risks, missing evidence, next actions, and audit-ready outputs.",
+    "inputLabel": "Penetration Testing Agent context",
+    "outputLabel": "Penetration Testing Agent AI response",
+    "signals": [
+      "Pentest Scope",
+      "Vulnerability Findings",
+      "Attack Path Review"
+    ]
+  },
+  {
     "id": "ai-cyber-soc-copilot-source-workflow",
     "title": "AI Cyber SOC Copilot Source Workflow",
     "category": "Source Project Coverage",

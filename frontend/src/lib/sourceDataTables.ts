@@ -20,6 +20,2866 @@ export type SourceDataTable = {
 
 export const sourceDataTables: SourceDataTable[] = [
   {
+    "id": "ai-autonomous-pen-testing-agent-backend-migrations-001-schema-sql-agents-log",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "agents_log",
+    "displayName": "Agents Log",
+    "framework": "SQL",
+    "sourceFile": "backend/migrations/001_schema.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id           SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "agent_name",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "agent_name   VARCHAR(100) NOT NULL"
+      },
+      {
+        "name": "action",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "action       VARCHAR(255) NOT NULL"
+      },
+      {
+        "name": "target_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "target_id    INTEGER      REFERENCES targets(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "scan_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "scan_id      INTEGER      REFERENCES scans(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'success'",
+        "sourceLine": "status       VARCHAR(50)  NOT NULL DEFAULT 'success'"
+      },
+      {
+        "name": "payload",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "payload      JSONB        DEFAULT '{}'"
+      },
+      {
+        "name": "error_msg",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "error_msg    TEXT"
+      },
+      {
+        "name": "duration_ms",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "duration_ms  INTEGER"
+      },
+      {
+        "name": "triggered_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "triggered_by INTEGER      REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at   TIMESTAMP    NOT NULL DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-ai-report-js-ai-reports",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "ai_reports",
+    "displayName": "Ai Reports",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/aiReport.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "scan_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "scan_id INTEGER REFERENCES scans(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by INTEGER REFERENCES users(id)"
+      },
+      {
+        "name": "title",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "title VARCHAR(255)"
+      },
+      {
+        "name": "executive_summary",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "executive_summary TEXT"
+      },
+      {
+        "name": "technical_findings",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "technical_findings TEXT"
+      },
+      {
+        "name": "cvss_breakdown",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "cvss_breakdown TEXT"
+      },
+      {
+        "name": "remediation_roadmap",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "remediation_roadmap TEXT"
+      },
+      {
+        "name": "raw_response",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "raw_response TEXT"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-agents-js-ai-results",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "ai_results",
+    "displayName": "Ai Results",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/agents.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id           SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by   INTEGER REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "result_type",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "result_type  VARCHAR(100) NOT NULL"
+      },
+      {
+        "name": "input_data",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "input_data   JSONB DEFAULT '{}'"
+      },
+      {
+        "name": "result_data",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "result_data  JSONB DEFAULT '{}'"
+      },
+      {
+        "name": "raw_response",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "raw_response TEXT"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at   TIMESTAMP NOT NULL DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-migrations-002-fixes-sql-ai-results",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "ai_results",
+    "displayName": "Ai Results",
+    "framework": "SQL",
+    "sourceFile": "backend/migrations/002_fixes.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id           SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by   INTEGER REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "result_type",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "result_type  VARCHAR(100) NOT NULL"
+      },
+      {
+        "name": "input_data",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "input_data   JSONB DEFAULT '{}'"
+      },
+      {
+        "name": "result_data",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "result_data  JSONB DEFAULT '{}'"
+      },
+      {
+        "name": "raw_response",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "raw_response TEXT"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at   TIMESTAMP NOT NULL DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-ai-analysis-js-compliance-mappings",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "compliance_mappings",
+    "displayName": "Compliance Mappings",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/aiAnalysis.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by INTEGER REFERENCES users(id)"
+      },
+      {
+        "name": "vulnerability_ids",
+        "type": "INTEGER[]",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "vulnerability_ids INTEGER[]"
+      },
+      {
+        "name": "frameworks",
+        "type": "TEXT[]",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "frameworks TEXT[]"
+      },
+      {
+        "name": "mapping_result",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "mapping_result JSONB"
+      },
+      {
+        "name": "raw_response",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "raw_response TEXT"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-migrations-001-schema-sql-compliance-mappings",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "compliance_mappings",
+    "displayName": "Compliance Mappings",
+    "framework": "SQL",
+    "sourceFile": "backend/migrations/001_schema.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id                SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by        INTEGER      REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "vulnerability_ids",
+        "type": "INTEGER[]",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "vulnerability_ids INTEGER[]    DEFAULT '{}'"
+      },
+      {
+        "name": "frameworks",
+        "type": "TEXT[]",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "frameworks        TEXT[]       DEFAULT '{}'"
+      },
+      {
+        "name": "mapping_result",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "mapping_result    JSONB        DEFAULT '{}'"
+      },
+      {
+        "name": "raw_response",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "raw_response      TEXT"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at        TIMESTAMP    NOT NULL DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-migrations-002-fixes-sql-compliance-mappings",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "compliance_mappings",
+    "displayName": "Compliance Mappings",
+    "framework": "SQL",
+    "sourceFile": "backend/migrations/002_fixes.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id                SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by        INTEGER REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "vulnerability_ids",
+        "type": "INTEGER[]",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "vulnerability_ids INTEGER[] DEFAULT '{}'"
+      },
+      {
+        "name": "frameworks",
+        "type": "TEXT[]",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "frameworks        TEXT[]    DEFAULT '{}'"
+      },
+      {
+        "name": "mapping_result",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "mapping_result    JSONB     DEFAULT '{}'"
+      },
+      {
+        "name": "raw_response",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "raw_response      TEXT"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at        TIMESTAMP NOT NULL DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-integrations-js-compliance-reports",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "compliance_reports",
+    "displayName": "Compliance Reports",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/integrations.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by INTEGER"
+      },
+      {
+        "name": "frameworks",
+        "type": "TEXT[]",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "frameworks TEXT[]"
+      },
+      {
+        "name": "scan_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "scan_id INTEGER"
+      },
+      {
+        "name": "report",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "report JSONB"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-gap-ai-attack-chain-analysis-multi-js-gap-features",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "gap_features",
+    "displayName": "Gap Features",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/gap_ai_attack_chain_analysis_multi.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "project",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "project TEXT"
+      },
+      {
+        "name": "slug",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "slug TEXT"
+      },
+      {
+        "name": "input",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "input JSONB"
+      },
+      {
+        "name": "output",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "output JSONB"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-gap-ai-contextual-vulnerability-severity-scoring-js-gap-features",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "gap_features",
+    "displayName": "Gap Features",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/gap_ai_contextual_vulnerability_severity_scoring.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "project",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "project TEXT"
+      },
+      {
+        "name": "slug",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "slug TEXT"
+      },
+      {
+        "name": "input",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "input JSONB"
+      },
+      {
+        "name": "output",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "output JSONB"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-gap-ai-exploitability-prediction-js-gap-features",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "gap_features",
+    "displayName": "Gap Features",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/gap_ai_exploitability_prediction.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "project",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "project TEXT"
+      },
+      {
+        "name": "slug",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "slug TEXT"
+      },
+      {
+        "name": "input",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "input JSONB"
+      },
+      {
+        "name": "output",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "output JSONB"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-gap-ai-false-positive-filtering-js-gap-features",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "gap_features",
+    "displayName": "Gap Features",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/gap_ai_false_positive_filtering.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "project",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "project TEXT"
+      },
+      {
+        "name": "slug",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "slug TEXT"
+      },
+      {
+        "name": "input",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "input JSONB"
+      },
+      {
+        "name": "output",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "output JSONB"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-gap-ai-remediation-recommendation-specific-fix-js-gap-features",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "gap_features",
+    "displayName": "Gap Features",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/gap_ai_remediation_recommendation_specific_fix.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "project",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "project TEXT"
+      },
+      {
+        "name": "slug",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "slug TEXT"
+      },
+      {
+        "name": "input",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "input JSONB"
+      },
+      {
+        "name": "output",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "output JSONB"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-gap-commercial-scanner-integration-nessus-qualys-js-gap-features",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "gap_features",
+    "displayName": "Gap Features",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/gap_commercial_scanner_integration_nessus_qualys.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "project",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "project TEXT"
+      },
+      {
+        "name": "slug",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "slug TEXT"
+      },
+      {
+        "name": "input",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "input JSONB"
+      },
+      {
+        "name": "output",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "output JSONB"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-gap-compliance-reporting-pci-dss-hipaa-js-gap-features",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "gap_features",
+    "displayName": "Gap Features",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/gap_compliance_reporting_pci_dss_hipaa.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "project",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "project TEXT"
+      },
+      {
+        "name": "slug",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "slug TEXT"
+      },
+      {
+        "name": "input",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "input JSONB"
+      },
+      {
+        "name": "output",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "output JSONB"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-gap-cvss-nvd-database-integration-js-gap-features",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "gap_features",
+    "displayName": "Gap Features",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/gap_cvss_nvd_database_integration.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "project",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "project TEXT"
+      },
+      {
+        "name": "slug",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "slug TEXT"
+      },
+      {
+        "name": "input",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "input JSONB"
+      },
+      {
+        "name": "output",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "output JSONB"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-gap-notifications-subsystem-js-gap-features",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "gap_features",
+    "displayName": "Gap Features",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/gap_notifications_subsystem.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "project",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "project TEXT"
+      },
+      {
+        "name": "slug",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "slug TEXT"
+      },
+      {
+        "name": "input",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "input JSONB"
+      },
+      {
+        "name": "output",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "output JSONB"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-gap-outbound-webhooks-siem-soar-js-gap-features",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "gap_features",
+    "displayName": "Gap Features",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/gap_outbound_webhooks_siem_soar.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "project",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "project TEXT"
+      },
+      {
+        "name": "slug",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "slug TEXT"
+      },
+      {
+        "name": "input",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "input JSONB"
+      },
+      {
+        "name": "output",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "output JSONB"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-gap-remediation-tracking-patch-management-workflow-js-gap-features",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "gap_features",
+    "displayName": "Gap Features",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/gap_remediation_tracking_patch_management_workflow.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "project",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "project TEXT"
+      },
+      {
+        "name": "slug",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "slug TEXT"
+      },
+      {
+        "name": "input",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "input JSONB"
+      },
+      {
+        "name": "output",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "output JSONB"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-models-schema-sql-pen-reports",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "pen_reports",
+    "displayName": "Pen Reports",
+    "framework": "SQL",
+    "sourceFile": "backend/models/schema.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "target_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "target_id INTEGER REFERENCES targets(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "title",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "title VARCHAR(255)"
+      },
+      {
+        "name": "report_type",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "report_type VARCHAR(50)"
+      },
+      {
+        "name": "summary",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "summary TEXT"
+      },
+      {
+        "name": "findings_summary",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "findings_summary TEXT"
+      },
+      {
+        "name": "compliance_status",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "compliance_status TEXT"
+      },
+      {
+        "name": "generated_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "generated_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-integrations-js-remediation-tracking",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "remediation_tracking",
+    "displayName": "Remediation Tracking",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/integrations.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "vulnerability_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "vulnerability_id INTEGER"
+      },
+      {
+        "name": "assignee",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "assignee VARCHAR(255)"
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'open'",
+        "sourceLine": "status VARCHAR(32) DEFAULT 'open'"
+      },
+      {
+        "name": "priority",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'medium'",
+        "sourceLine": "priority VARCHAR(16) DEFAULT 'medium'"
+      },
+      {
+        "name": "due_date",
+        "type": "DATE",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "due_date DATE"
+      },
+      {
+        "name": "notes",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "notes TEXT"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by INTEGER"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "updated_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-migrations-001-schema-sql-reports",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "reports",
+    "displayName": "Reports",
+    "framework": "SQL",
+    "sourceFile": "backend/migrations/001_schema.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id                  SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "scan_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "scan_id             INTEGER      REFERENCES scans(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by          INTEGER      REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "report_type",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'technical'",
+        "sourceLine": "report_type         VARCHAR(50)  NOT NULL DEFAULT 'technical'"
+      },
+      {
+        "name": "title",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "title               VARCHAR(500)"
+      },
+      {
+        "name": "executive_summary",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "executive_summary   TEXT"
+      },
+      {
+        "name": "technical_findings",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "technical_findings  TEXT"
+      },
+      {
+        "name": "cvss_breakdown",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "cvss_breakdown      TEXT"
+      },
+      {
+        "name": "remediation_roadmap",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "remediation_roadmap TEXT"
+      },
+      {
+        "name": "compliance_notes",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "compliance_notes    TEXT"
+      },
+      {
+        "name": "format",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'json'",
+        "sourceLine": "format              VARCHAR(20)  DEFAULT 'json'"
+      },
+      {
+        "name": "file_path",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "file_path           VARCHAR(500)"
+      },
+      {
+        "name": "raw_response",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "raw_response        TEXT"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at          TIMESTAMP    NOT NULL DEFAULT NOW()"
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "updated_at          TIMESTAMP    NOT NULL DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-ai-analysis-js-risk-assessments",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "risk_assessments",
+    "displayName": "Risk Assessments",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/aiAnalysis.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by INTEGER REFERENCES users(id)"
+      },
+      {
+        "name": "vulnerability_ids",
+        "type": "INTEGER[]",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "vulnerability_ids INTEGER[]"
+      },
+      {
+        "name": "asset_criticality",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "asset_criticality VARCHAR(50)"
+      },
+      {
+        "name": "risk_result",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "risk_result JSONB"
+      },
+      {
+        "name": "raw_response",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "raw_response TEXT"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-migrations-001-schema-sql-risk-assessments",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "risk_assessments",
+    "displayName": "Risk Assessments",
+    "framework": "SQL",
+    "sourceFile": "backend/migrations/001_schema.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id                SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by        INTEGER      REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "vulnerability_ids",
+        "type": "INTEGER[]",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "vulnerability_ids INTEGER[]    DEFAULT '{}'"
+      },
+      {
+        "name": "asset_criticality",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'medium'",
+        "sourceLine": "asset_criticality VARCHAR(50)  NOT NULL DEFAULT 'medium'"
+      },
+      {
+        "name": "risk_result",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "risk_result       JSONB        DEFAULT '{}'"
+      },
+      {
+        "name": "raw_response",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "raw_response      TEXT"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at        TIMESTAMP    NOT NULL DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-migrations-002-fixes-sql-risk-assessments",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "risk_assessments",
+    "displayName": "Risk Assessments",
+    "framework": "SQL",
+    "sourceFile": "backend/migrations/002_fixes.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id                SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by        INTEGER REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "vulnerability_ids",
+        "type": "INTEGER[]",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "vulnerability_ids INTEGER[] DEFAULT '{}'"
+      },
+      {
+        "name": "asset_criticality",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'medium'",
+        "sourceLine": "asset_criticality VARCHAR(50) NOT NULL DEFAULT 'medium'"
+      },
+      {
+        "name": "risk_result",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "risk_result       JSONB DEFAULT '{}'"
+      },
+      {
+        "name": "raw_response",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "raw_response      TEXT"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at        TIMESTAMP NOT NULL DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-routes-integrations-js-scanner-imports",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "scanner_imports",
+    "displayName": "Scanner Imports",
+    "framework": "SQL",
+    "sourceFile": "backend/routes/integrations.js",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "source",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "source VARCHAR(32)"
+      },
+      {
+        "name": "raw",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "raw JSONB"
+      },
+      {
+        "name": "vulnerability_count",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "0",
+        "sourceLine": "vulnerability_count INTEGER DEFAULT 0"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by INTEGER"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-models-schema-sql-scans",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "scans",
+    "displayName": "Scans",
+    "framework": "SQL",
+    "sourceFile": "backend/models/schema.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "target_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "target_id INTEGER REFERENCES targets(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "scan_type",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "scan_type VARCHAR(50)"
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'running'",
+        "sourceLine": "status VARCHAR(50) DEFAULT 'running'"
+      },
+      {
+        "name": "findings_count",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "0",
+        "sourceLine": "findings_count INTEGER DEFAULT 0"
+      },
+      {
+        "name": "duration_seconds",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "duration_seconds INTEGER"
+      },
+      {
+        "name": "started_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "started_at TIMESTAMP DEFAULT NOW()"
+      },
+      {
+        "name": "completed_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "completed_at TIMESTAMP"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-migrations-001-schema-sql-scans",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "scans",
+    "displayName": "Scans",
+    "framework": "SQL",
+    "sourceFile": "backend/migrations/001_schema.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id               SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "target_id",
+        "type": "INTEGER",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "target_id        INTEGER      NOT NULL REFERENCES targets(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "scan_type",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'full'",
+        "sourceLine": "scan_type        VARCHAR(100) NOT NULL DEFAULT 'full'"
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'pending'",
+        "sourceLine": "status           VARCHAR(50)  NOT NULL DEFAULT 'pending'"
+      },
+      {
+        "name": "started_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "started_at       TIMESTAMP"
+      },
+      {
+        "name": "completed_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "completed_at     TIMESTAMP"
+      },
+      {
+        "name": "duration_seconds",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "duration_seconds INTEGER"
+      },
+      {
+        "name": "findings_count",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "0",
+        "sourceLine": "findings_count   INTEGER      DEFAULT 0"
+      },
+      {
+        "name": "scan_config",
+        "type": "JSONB",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "scan_config      JSONB        DEFAULT '{}'"
+      },
+      {
+        "name": "initiated_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "initiated_by     INTEGER      REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at       TIMESTAMP    NOT NULL DEFAULT NOW()"
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "updated_at       TIMESTAMP    NOT NULL DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-models-schema-sql-security-logs",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "security_logs",
+    "displayName": "Security Logs",
+    "framework": "SQL",
+    "sourceFile": "backend/models/schema.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "target_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "target_id INTEGER REFERENCES targets(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "agent",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "agent VARCHAR(100)"
+      },
+      {
+        "name": "action",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "action VARCHAR(255)"
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "status VARCHAR(50)"
+      },
+      {
+        "name": "message",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "message TEXT"
+      },
+      {
+        "name": "duration_ms",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "duration_ms INTEGER"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-models-schema-sql-targets",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "targets",
+    "displayName": "Targets",
+    "framework": "SQL",
+    "sourceFile": "backend/models/schema.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "name",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "name VARCHAR(255) NOT NULL"
+      },
+      {
+        "name": "ip_address",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "ip_address VARCHAR(50)"
+      },
+      {
+        "name": "domain",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "domain VARCHAR(255)"
+      },
+      {
+        "name": "target_type",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'web'",
+        "sourceLine": "target_type VARCHAR(50) DEFAULT 'web'"
+      },
+      {
+        "name": "os",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "os VARCHAR(100)"
+      },
+      {
+        "name": "ports_open",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "ports_open TEXT"
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'pending'",
+        "sourceLine": "status VARCHAR(50) DEFAULT 'pending'"
+      },
+      {
+        "name": "risk_score",
+        "type": "NUMERIC",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "0",
+        "sourceLine": "risk_score NUMERIC DEFAULT 0"
+      },
+      {
+        "name": "last_scan",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "last_scan TIMESTAMP"
+      },
+      {
+        "name": "notes",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "notes TEXT"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by INTEGER REFERENCES users(id)"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "updated_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-migrations-001-schema-sql-targets",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "targets",
+    "displayName": "Targets",
+    "framework": "SQL",
+    "sourceFile": "backend/migrations/001_schema.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id            SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "name",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "name          VARCHAR(255) NOT NULL"
+      },
+      {
+        "name": "ip_address",
+        "type": "INET",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "ip_address    INET"
+      },
+      {
+        "name": "domain",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "domain        VARCHAR(255)"
+      },
+      {
+        "name": "os",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "os            VARCHAR(100)"
+      },
+      {
+        "name": "target_type",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'host'",
+        "sourceLine": "target_type   VARCHAR(50)  DEFAULT 'host'"
+      },
+      {
+        "name": "environment",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'production'",
+        "sourceLine": "environment   VARCHAR(50)  DEFAULT 'production'"
+      },
+      {
+        "name": "description",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "description   TEXT"
+      },
+      {
+        "name": "tags",
+        "type": "TEXT[]",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "tags          TEXT[]       DEFAULT '{}'"
+      },
+      {
+        "name": "created_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "created_by    INTEGER      REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at    TIMESTAMP    NOT NULL DEFAULT NOW()"
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "updated_at    TIMESTAMP    NOT NULL DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-models-schema-sql-users",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "users",
+    "displayName": "Users",
+    "framework": "SQL",
+    "sourceFile": "backend/models/schema.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "email",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": true,
+        "defaultValue": "",
+        "sourceLine": "email VARCHAR(255) UNIQUE NOT NULL"
+      },
+      {
+        "name": "password",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "password VARCHAR(255) NOT NULL"
+      },
+      {
+        "name": "name",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "name VARCHAR(255) NOT NULL"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-models-schema-sql-vulnerabilities",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "vulnerabilities",
+    "displayName": "Vulnerabilities",
+    "framework": "SQL",
+    "sourceFile": "backend/models/schema.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "target_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "target_id INTEGER REFERENCES targets(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "scan_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "scan_id INTEGER REFERENCES scans(id)"
+      },
+      {
+        "name": "title",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "title VARCHAR(255)"
+      },
+      {
+        "name": "description",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "description TEXT"
+      },
+      {
+        "name": "severity",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "severity VARCHAR(20)"
+      },
+      {
+        "name": "cvss_score",
+        "type": "NUMERIC",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "cvss_score NUMERIC"
+      },
+      {
+        "name": "cve_id",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "cve_id VARCHAR(50)"
+      },
+      {
+        "name": "affected_component",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "affected_component VARCHAR(255)"
+      },
+      {
+        "name": "remediation",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "remediation TEXT"
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'open'",
+        "sourceLine": "status VARCHAR(50) DEFAULT 'open'"
+      },
+      {
+        "name": "discovered_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "discovered_at TIMESTAMP DEFAULT NOW()"
+      }
+    ]
+  },
+  {
+    "id": "ai-autonomous-pen-testing-agent-backend-migrations-001-schema-sql-vulnerabilities",
+    "sourceProject": "AIAutonomousPenTestingAgent",
+    "name": "vulnerabilities",
+    "displayName": "Vulnerabilities",
+    "framework": "SQL",
+    "sourceFile": "backend/migrations/001_schema.sql",
+    "columns": [
+      {
+        "name": "id",
+        "type": "SERIAL",
+        "nullable": true,
+        "primaryKey": true,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "id                  SERIAL PRIMARY KEY"
+      },
+      {
+        "name": "scan_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "scan_id             INTEGER      REFERENCES scans(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "target_id",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "target_id           INTEGER      REFERENCES targets(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "title",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "title               VARCHAR(500) NOT NULL"
+      },
+      {
+        "name": "description",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "description         TEXT"
+      },
+      {
+        "name": "severity",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'medium'",
+        "sourceLine": "severity            VARCHAR(20)  NOT NULL DEFAULT 'medium'"
+      },
+      {
+        "name": "cvss_score",
+        "type": "NUMERIC",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "cvss_score          NUMERIC(4,1) CHECK (cvss_score >= 0 AND cvss_score <= 10)"
+      },
+      {
+        "name": "cvss_vector",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "cvss_vector         VARCHAR(255)"
+      },
+      {
+        "name": "cve_id",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "cve_id              VARCHAR(50)"
+      },
+      {
+        "name": "cwe_id",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "cwe_id              VARCHAR(50)"
+      },
+      {
+        "name": "affected_component",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "affected_component  VARCHAR(255)"
+      },
+      {
+        "name": "affected_version",
+        "type": "VARCHAR",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "affected_version    VARCHAR(100)"
+      },
+      {
+        "name": "remediation",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "remediation         TEXT"
+      },
+      {
+        "name": "proof_of_concept",
+        "type": "TEXT",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "proof_of_concept    TEXT"
+      },
+      {
+        "name": "references",
+        "type": "TEXT[]",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "references          TEXT[]"
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'open'",
+        "sourceLine": "status              VARCHAR(50)  NOT NULL DEFAULT 'open'"
+      },
+      {
+        "name": "resolved_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "resolved_at         TIMESTAMP"
+      },
+      {
+        "name": "resolved_by",
+        "type": "INTEGER",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "",
+        "sourceLine": "resolved_by         INTEGER      REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "tags",
+        "type": "TEXT[]",
+        "nullable": true,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "'{}'",
+        "sourceLine": "tags                TEXT[]       DEFAULT '{}'"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "created_at          TIMESTAMP    NOT NULL DEFAULT NOW()"
+      },
+      {
+        "name": "updated_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "primaryKey": false,
+        "unique": false,
+        "defaultValue": "NOW()",
+        "sourceLine": "updated_at          TIMESTAMP    NOT NULL DEFAULT NOW()"
+      }
+    ]
+  },
+  {
     "id": "ai-cyber-soc-copilot-backend-migrations-001-schema-sql-ai-results",
     "sourceProject": "AICyberSOCCopilot",
     "name": "ai_results",
